@@ -4,10 +4,50 @@
  */
 package hospitaladministration;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author jimok
  */
 public class DatabaseSetup {
+        final static String DB_BASE_URL = " jdbc:mysql : //localhost ";   
+        final static String USER = "ooc2023";
+	final static String PASSWORD = "ooc23";
+        
+        public static boolean setupDB() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();  // This is actually going to name this object driver for us
+     
+            try 
+                (Connection conn = DriverManager.getConnection(DB_BASE_URL, USER, PASSWORD);
+                    
+                Statement stmt = conn.createStatement();
+                    
+                ) {
+                // Two setup here, one is for sql and other is for Java respectively.
+                stmt.executeQuery(" CREATE DATABASE IF NOT EXISTS hospital ;");
+                stmt.execute("USE  hospital ;");
+                String sql =
+                        // Make DataType here are in order with the variables class you created.
+                        "CREATE TABLE IF NOT EXISTS patientData ("
+                        + "name VARCHAR(255),"
+                        + "birthdate DATE,"      
+                        + "bloodType VARCHAR(2),"
+                        + "id INT(10)"
+                        + ");";
+                stmt.execute(sql);
+                return true;
+                
+            } catch (Exception e) {
+             e.printStackTrace();
+             return false;
+                
+            }
+        }
+	
+
     
 }
