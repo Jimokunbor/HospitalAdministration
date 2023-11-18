@@ -27,11 +27,17 @@ public class Patient {
     // with each patient
     private static int currentID = 1;
 
+    public static int getCurrentID() {
+        return currentID;
+    }
+
     public Patient(String name, String birthDate, String bloodType) {
         this.name = name;
         this.birthDate = birthDate;
         this.bloodType = bloodType;
         this.patientID = currentID;
+        // We can print names of patient to console if we want:
+        System.out.println(name + " birthday is on " + birthDate);
         currentID++;
     }
 
