@@ -25,7 +25,7 @@ public class DatabaseSetup extends Database{
                     
                 ) {
                 // Two setup here, one is for sql and other is for Java respectively.
-                stmt.executeQuery(" CREATE DATABASE IF NOT EXISTS " + DB_NAME + ";");
+                stmt.execute(" CREATE DATABASE IF NOT EXISTS " + DB_NAME + ";");
                 stmt.execute("USE  hospital ;");
                 String sql =
                         // Make DataType here are in order with the variables class you created.
